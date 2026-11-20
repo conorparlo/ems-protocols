@@ -1,8 +1,8 @@
-import { router, Stack } from 'expo-router';
+import { router } from 'expo-router';
 import { useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 
-import { LevelHeaderButton, ProtocolRow, SectionTitle } from '@/components/ui';
+import { HeaderToolbar, ProtocolRow, SectionTitle } from '@/components/ui';
 import { catalog, complaints, search } from '@/content';
 import { useSettings } from '@/settings';
 import { useAppTheme } from '@/theme';
@@ -21,7 +21,7 @@ export default function Home() {
 
   return (
     <>
-      <Stack.Screen options={{ headerRight: () => <LevelHeaderButton /> }} />
+      <HeaderToolbar />
       <ScrollView
         style={{ backgroundColor: c.bg }}
         contentContainerStyle={styles.container}

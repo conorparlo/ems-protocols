@@ -1,4 +1,5 @@
-import { router } from 'expo-router';
+import { router, Stack } from 'expo-router';
+import { SymbolView } from 'expo-symbols';
 import type { ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
@@ -7,24 +8,40 @@ import { LEVEL_LABELS } from '@/content/schema';
 import { useSettings } from '@/settings';
 import { LEVEL_COLORS, useAppTheme } from '@/theme';
 
-/** Header button showing the provider's level; opens settings. */
-export function LevelHeaderButton() {
+/** Yellow/blue/... pill showing the provider's level; opens settings. */
+function LevelPill() {
   const { level } = useSettings();
   const { c } = useAppTheme();
+  const fg = level === 'ALL' ? c.text : '#111';
   return (
-      <Pressable
-        onPress={() => router.push('/settings')}
-        accessibilityRole="button"
-        accessibilityLabel={`Certification level ${LEVEL_LABELS[level]}. Open settings`}
-        hitSlop={10}
-        style={[
-          styles.levelPill,
-          { backgroundColor: level === 'ALL' ? c.cardAlt : LEVEL_COLORS[level] },
-        ]}>
-        <Text style={{ color: level === 'ALL' ? c.text : '#111', fontWeight: '800', fontSize: 13 }}>
-          {level === 'ALL' ? 'EMR' : level} ⚙︎
-        </Text>
-      </Pressable>
+    <Pressable
+      onPress={() => router.push('/settings')}
+      accessibilityRole="button"
+      accessibilityLabel={`Certification level ${LEVEL_LABELS[level]}. Open settings`}
+      hitSlop={6}
+      style={({ pressed }) => [
+        styles.levelPill,
+        { backgroundColor: level === 'ALL' ? c.cardAlt : LEVEL_COLORS[level], opacity: pressed ? 0.7 : 1 },
+      ]}>
+      <Text style={{ color: fg, fontWeight: '800', fontSize: 14 }}>{level === 'ALL' ? 'EMR' : level}</Text>
+      <SymbolView name="gearshape.fill" size={13} tintColor={fg} />
+    </Pressable>
+  );
+}
+
+/**
+ * Right side of the native header: optional native buttons (passed as `Stack.Toolbar.Button`
+ * children), then the level pill. The pill opts out of the iOS 26 shared glass capsule so it
+ * stands on its own instead of being squeezed into the capsule with the other buttons.
+ */
+export function HeaderToolbar({ children }: { children?: ReactNode }) {
+  return (
+    <Stack.Toolbar placement="right">
+      {children}
+      <Stack.Toolbar.View hidesSharedBackground>
+        <LevelPill />
+      </Stack.Toolbar.View>
+    </Stack.Toolbar>
   );
 }
 
@@ -97,7 +114,14 @@ export function Segmented<T extends string>({
 }
 
 const styles = StyleSheet.create({
-  levelPill: { paddingHorizontal: 10, paddingVertical: 5, borderRadius: 14 },
+  levelPill: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+    height: 36,
+    paddingHorizontal: 13,
+    borderRadius: 18,
+  },
   row: {
     flexDirection: 'row',
     alignItems: 'center',

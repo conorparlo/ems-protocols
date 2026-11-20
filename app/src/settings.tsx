@@ -5,11 +5,14 @@ import type { Level } from '@/content/schema';
 
 export type ThemePref = 'system' | 'dark' | 'light';
 export type TextScale = 1 | 1.15 | 1.3;
+/** How steps above the provider's level are shown: removed, or greyed out with a level badge. */
+export type AboveScope = 'hide' | 'dim';
 
 export type Settings = {
   level: Level;
   theme: ThemePref;
   textScale: TextScale;
+  aboveScope: AboveScope;
   recents: string[];
   favorites: string[];
 };
@@ -18,6 +21,7 @@ const DEFAULTS: Settings = {
   level: 'EMT',
   theme: 'dark',
   textScale: 1,
+  aboveScope: 'hide',
   recents: [],
   favorites: [],
 };

@@ -3,7 +3,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SectionTitle, Segmented } from '@/components/ui';
 import { protocols, catalog, SOURCE_VERSION } from '@/content';
 import { LEVEL_LABELS, LEVELS } from '@/content/schema';
-import { useSettings, type TextScale, type ThemePref } from '@/settings';
+import { useSettings, type AboveScope, type TextScale, type ThemePref } from '@/settings';
 import { LEVEL_COLORS, useAppTheme } from '@/theme';
 
 export default function SettingsScreen() {
@@ -13,10 +13,13 @@ export default function SettingsScreen() {
   const reviewed = Object.values(protocols).filter((p) => p.reviewed).length;
 
   return (
-    <ScrollView style={{ backgroundColor: c.bg }} contentContainerStyle={{ padding: 16, paddingBottom: 48 }}>
+    <ScrollView
+      style={{ backgroundColor: c.bg }}
+      contentContainerStyle={{ padding: 16, paddingBottom: 48 }}
+      contentInsetAdjustmentBehavior="automatic">
       <SectionTitle>My certification level</SectionTitle>
       <Text style={{ color: c.textDim, fontSize: fs(13), marginBottom: 10 }}>
-        Steps within your scope are shown at full strength. Steps above it are dimmed and labeled.
+        Steps within your scope are shown at full strength. Steps above it are hidden or greyed out, as set below.
       </Text>
       <View style={{ gap: 8 }}>
         {LEVELS.map((l) => {
@@ -49,6 +52,20 @@ export default function SettingsScreen() {
           );
         })}
       </View>
+
+      <SectionTitle>Steps above my level</SectionTitle>
+      <Segmented<AboveScope>
+        value={s.aboveScope}
+        onChange={(aboveScope) => s.update({ aboveScope })}
+        options={[
+          { value: 'hide', label: 'Hide' },
+          { value: 'dim', label: 'Grey out' },
+        ]}
+      />
+      <Text style={{ color: c.textDim, fontSize: fs(13), marginTop: 8 }}>
+        Decision questions stay visible (greyed out) so the step-through can continue. You can also switch
+        this from any protocol.
+      </Text>
 
       <SectionTitle>Appearance</SectionTitle>
       <Segmented<ThemePref>

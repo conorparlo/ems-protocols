@@ -3,7 +3,7 @@ import { router } from 'expo-router';
 import { useState } from 'react';
 import { Modal, Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 
-import { ItemList, LevelBadge } from '@/components/items';
+import { allHidden, ItemList, LevelBadge, useScope } from '@/components/items';
 import { plain, RichText } from '@/components/rich-text';
 import { catalog, pageImage } from '@/content';
 import { inScope, type Node, type Protocol, type Sidebar } from '@/content/schema';
@@ -122,29 +122,34 @@ export function StepThrough({ protocol }: { protocol: Protocol }) {
   const { c, fs } = useAppTheme();
   const [choices, setChoices] = useState<number[]>([]);
   const { entries, pending, ended } = walk(protocol, choices);
+  const { shows } = useScope();
+  const hidden = (n: Node) => n.kind === 'step' && allHidden(n.items, shows);
+  const firstShown = entries.findIndex((e) => !hidden(e.node));
 
   return (
     <View>
-      {entries.map((e, i) => (
-        <View key={`${i}-${e.id}`}>
-          {i > 0 && <Arrow />}
-          <NodeCard
-            node={e.node}
-            chosen={e.chosen}
-            onChoose={
-              e === pending
-                ? (b) => setChoices([...choices, b])
-                : e.chosen !== undefined
-                  ? (b) => {
-                      // Re-answer an earlier decision: keep choices before it, replace this one.
-                      const idx = entries.slice(0, i).filter((x) => x.chosen !== undefined).length;
-                      setChoices([...choices.slice(0, idx), b]);
-                    }
-                  : undefined
-            }
-          />
-        </View>
-      ))}
+      {entries.map((e, i) =>
+        hidden(e.node) ? null : (
+          <View key={`${i}-${e.id}`}>
+            {i > firstShown && <Arrow />}
+            <NodeCard
+              node={e.node}
+              chosen={e.chosen}
+              onChoose={
+                e === pending
+                  ? (b) => setChoices([...choices, b])
+                  : e.chosen !== undefined
+                    ? (b) => {
+                        // Re-answer an earlier decision: keep choices before it, replace this one.
+                        const idx = entries.slice(0, i).filter((x) => x.chosen !== undefined).length;
+                        setChoices([...choices.slice(0, idx), b]);
+                      }
+                    : undefined
+              }
+            />
+          </View>
+        ),
+      )}
       {ended && (
         <Text style={{ color: c.textDim, textAlign: 'center', marginTop: 14, fontSize: fs(14) }}>
           — End of algorithm —
@@ -174,41 +179,49 @@ export function StepThrough({ protocol }: { protocol: Protocol }) {
 
 export function FullView({ protocol }: { protocol: Protocol }) {
   const { c, fs } = useAppTheme();
-  const label = (id: string) => {
+  const { shows } = useScope();
+  const hidden = (n: Node) => n.kind === 'step' && allHidden(n.items, shows);
+  const label = (id: string): string => {
     const n = protocol.nodes[id];
     if (!n) return id;
-    const t = n.kind === 'step' ? n.items[0].text : n.text;
+    // Point past hidden steps to the next card that is actually shown.
+    if (hidden(n)) return n.kind === 'step' && n.next ? label(n.next) : 'End';
+    const t = n.kind === 'step' ? (n.items.find((i) => shows(i.level)) ?? n.items[0]).text : n.text;
     return plain(t).slice(0, 48);
   };
   return (
     <View style={{ gap: 10 }}>
-      {Object.entries(protocol.nodes).map(([id, node]) => (
-        <View key={id}>
-          <NodeCard node={node} />
-          {node.kind !== 'decision' && node.next && (
-            <Text style={{ color: c.textDim, fontSize: fs(12), marginTop: 4, marginLeft: 6 }}>
-              → {label(node.next)}
-            </Text>
-          )}
-          {node.kind === 'decision' && (
-            <View style={{ marginTop: 4, marginLeft: 6 }}>
-              {node.branches.map((b, i) => (
-                <Text key={i} style={{ color: c.textDim, fontSize: fs(12) }}>
-                  {b.label} → {label(b.next)}
-                </Text>
-              ))}
-            </View>
-          )}
-        </View>
-      ))}
+      {Object.entries(protocol.nodes).map(([id, node]) =>
+        hidden(node) ? null : (
+          <View key={id}>
+            <NodeCard node={node} />
+            {node.kind !== 'decision' && node.next && (
+              <Text style={{ color: c.textDim, fontSize: fs(12), marginTop: 4, marginLeft: 6 }}>
+                → {label(node.next)}
+              </Text>
+            )}
+            {node.kind === 'decision' && (
+              <View style={{ marginTop: 4, marginLeft: 6 }}>
+                {node.branches.map((b, i) => (
+                  <Text key={i} style={{ color: c.textDim, fontSize: fs(12) }}>
+                    {b.label} → {label(b.next)}
+                  </Text>
+                ))}
+              </View>
+            )}
+          </View>
+        ),
+      )}
     </View>
   );
 }
 
 /* ----------------------------------------------------------------- sidebars */
 
-export function Sidebars({ sidebars }: { sidebars: Sidebar[] }) {
+export function Sidebars({ sidebars: all }: { sidebars: Sidebar[] }) {
   const { c, fs } = useAppTheme();
+  const { shows } = useScope();
+  const sidebars = all.filter((s) => !allHidden(s.items, shows));
   if (!sidebars.length) return null;
   const bg = (k: Sidebar['kind']) =>
     k === 'pediatric' ? c.pedsBg : k === 'geriatric' ? c.geriBg : k === 'teaching' ? c.teachingBg : c.cardAlt;

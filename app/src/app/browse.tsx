@@ -18,6 +18,7 @@ export default function Browse() {
   return (
     <SectionList
       style={{ backgroundColor: c.bg }}
+      contentInsetAdjustmentBehavior="automatic"
       contentContainerStyle={{ padding: 16, paddingBottom: 48 }}
       sections={sections}
       keyExtractor={(id) => id}

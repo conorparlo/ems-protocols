@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 
 import { RichText } from '@/components/rich-text';
-import { inScope, type Item, type Level } from '@/content/schema';
+import { inScope, type Item, type Level, type Protocol } from '@/content/schema';
 import { useSettings } from '@/settings';
 import { GERI_COLOR, LEVEL_COLORS, LEVEL_SHORT, PEDS_COLOR, useAppTheme } from '@/theme';
 
@@ -25,16 +25,38 @@ function PopulationBadge({ population }: { population: 'pediatric' | 'geriatric'
 }
 
 /**
+ * Scope display rules. `shows(level)` is false only for content above the provider's level while the
+ * "hide" preference is on. Decisions are never hidden (see NodeCard): the step-through can't continue
+ * past a question the user can't see.
+ */
+export function useScope() {
+  const { level: provider, aboveScope } = useSettings();
+  const hide = aboveScope === 'hide';
+  return { provider, hide, shows: (level: Level) => !hide || inScope(level, provider) };
+}
+
+/** True when a step card or sidebar has no lines left to show. */
+export const allHidden = (items: Item[], shows: (l: Level) => boolean) => !items.some((i) => shows(i.level));
+
+/** Number of lines in a protocol (nodes + sidebars) above the provider's level. */
+export function countAboveScope(protocol: Protocol, provider: Level) {
+  const lists = [...Object.values(protocol.nodes).map((n) => (n.kind === 'goto' ? [] : n.items)), ...protocol.sidebars.map((s) => s.items)];
+  return lists.flat().filter((i) => !inScope(i.level, provider)).length;
+}
+
+/**
  * Lines of a flowchart box. Each line carries its own scope level: in-scope lines render at full
- * strength with a colored edge; lines above the provider's level are dimmed and badged.
+ * strength with a colored edge; lines above the provider's level are dimmed and badged, or left out
+ * entirely when the "hide" preference is on.
  */
 export function ItemList({ items, size = 17 }: { items: Item[]; size?: number }) {
   const { c, fs } = useAppTheme();
-  const { level: provider } = useSettings();
+  const { provider, shows } = useScope();
 
   return (
     <View style={{ gap: 6 }}>
       {items.map((item, i) => {
+        if (!shows(item.level)) return null;
         const ok = inScope(item.level, provider);
         const edge =
           item.level !== 'ALL'

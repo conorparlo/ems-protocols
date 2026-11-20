@@ -2,7 +2,7 @@ import { Stack, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 
-import { LevelHeaderButton, ProtocolRow, Segmented } from '@/components/ui';
+import { HeaderToolbar, ProtocolRow, Segmented } from '@/components/ui';
 import { complaints } from '@/content';
 import { useAppTheme } from '@/theme';
 
@@ -20,8 +20,12 @@ export default function ComplaintScreen() {
 
   return (
     <>
-      <Stack.Screen options={{ title: complaint.label, headerRight: () => <LevelHeaderButton /> }} />
-      <ScrollView style={{ backgroundColor: c.bg }} contentContainerStyle={{ padding: 16, paddingBottom: 48 }}>
+      <Stack.Screen options={{ title: complaint.label }} />
+      <HeaderToolbar />
+      <ScrollView
+        style={{ backgroundColor: c.bg }}
+        contentContainerStyle={{ padding: 16, paddingBottom: 48 }}
+        contentInsetAdjustmentBehavior="automatic">
         {hasPeds && (
           <View style={{ marginBottom: 14 }}>
             <Segmented
