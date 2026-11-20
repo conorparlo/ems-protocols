@@ -1,0 +1,107 @@
+{
+  "id": "3060",
+  "title": "Chest Pain",
+  "category": "cardiac",
+  "pages": [74],
+  "sourceVersion": "2026-04-22",
+  "aliases": ["ACS", "MI", "heart attack", "angina", "STEMI", "cardiac"],
+  "entry": "initial",
+  "nodes": {
+    "initial": {
+      "kind": "step",
+      "items": [
+        { "text": "**Consider life threatening causes of chest pain in all patients**" },
+        { "text": "While assessing ABCs titrate oxygen, monitor vital signs and cardiac rhythm, start IV", "style": "bullet" },
+        { "text": "Obtain 12-lead ECG", "style": "bullet" },
+        { "text": "Administer [[m:9050|aspirin]] if history suggests possible cardiac chest pain", "style": "bullet" }
+      ],
+      "next": "stemi"
+    },
+    "stemi": {
+      "kind": "decision",
+      "text": "STEMI?",
+      "level": "EMT-I",
+      "branches": [
+        { "label": "Yes", "next": "stemi-yes" },
+        { "label": "No", "next": "nitro" }
+      ]
+    },
+    "stemi-yes": {
+      "kind": "step",
+      "items": [
+        { "text": "Notify receiving facility immediately if [[p:3070|STEMI Alert]] criteria met", "level": "EMT-I", "style": "bullet" },
+        { "text": "Place combination defibrillation/pacing pads on patient", "level": "EMT-I", "style": "bullet" }
+      ],
+      "next": "nitro"
+    },
+    "nitro": {
+      "kind": "step",
+      "items": [
+        { "text": "Consider SL [[m:9220|nitroglycerin]] if suspected cardiac chest pain and no contraindication", "level": "AEMT" },
+        { "text": "An **EMT** may administer patient’s prescribed [[m:9220|nitroglycerin]], **Contact Hospital** for verbal order", "level": "EMT" }
+      ],
+      "next": "nitro-hypotension"
+    },
+    "nitro-hypotension": {
+      "kind": "step",
+      "items": [
+        { "text": "For hypotension following [[m:9220|nitroglycerin]] give 250 ml NS bolus, reassess, and repeat bolus as needed. Do not give additional [[m:9220|nitroglycerin]].", "level": "EMT" }
+      ],
+      "next": "opioid"
+    },
+    "opioid": {
+      "kind": "step",
+      "items": [
+        { "text": "Consider [[m:9230|opioid]] for chest pain refractory to [[m:9220|nitroglycerin]] if no contraindication", "level": "EMT-I" }
+      ],
+      "next": "repeat-12"
+    },
+    "repeat-12": {
+      "kind": "step",
+      "items": [
+        { "text": "Consider repeat 12-lead if initial 12-lead non-diagnostic and/or patient’s condition changes", "level": "EMT-I", "style": "bullet" },
+        { "text": "Consider additional 12-lead views such as R sided leads for R ventricular infarct if inferior MI present", "level": "EMT-I", "style": "bullet" }
+      ]
+    }
+  },
+  "sidebars": [
+    {
+      "kind": "teaching",
+      "title": "Life threatening causes of chest pain:",
+      "items": [
+        { "text": "Acute coronary syndrome (ACS)", "style": "bullet" },
+        { "text": "Unstable angina", "style": "subbullet" },
+        { "text": "NSTEMI", "style": "subbullet" },
+        { "text": "STEMI", "style": "subbullet" },
+        { "text": "Pulmonary embolism", "style": "bullet" },
+        { "text": "Thoracic aortic dissection", "style": "bullet" },
+        { "text": "Tension pneumothorax", "style": "bullet" }
+      ]
+    },
+    {
+      "kind": "teaching",
+      "title": "Nitroglycerin Contraindications:",
+      "items": [
+        { "text": "Suspected right ventricular ST-segment elevation MI (inferior STEMI pattern plus ST elevation in right-sided precordial leads e.g. V4R)", "style": "bullet" },
+        { "text": "Hypotension SBP < 100", "style": "bullet" },
+        { "text": "Recent use of erectile dysfunction (ED) medication (e.g. Viagra, Cialis)", "style": "bullet" }
+      ]
+    },
+    {
+      "kind": "pediatric",
+      "title": "Causes of Chest Pain in Children:",
+      "items": [
+        { "text": "Costochondritis", "style": "bullet" },
+        { "text": "Pulmonary causes", "style": "bullet" },
+        { "text": "Ischemia is rare but can be seen with a history of Kawasaki’s disease with coronary aneurysms", "style": "bullet" },
+        { "text": "Cyanotic or congenital heart disease", "style": "bullet" },
+        { "text": "Myocarditis", "style": "bullet" },
+        { "text": "Pericarditis", "style": "bullet" },
+        { "text": "Arrhythmia", "style": "bullet" },
+        { "text": "Anxiety", "style": "bullet" },
+        { "text": "Abdominal causes", "style": "bullet" }
+      ]
+    }
+  ],
+  "reviewed": null
+}

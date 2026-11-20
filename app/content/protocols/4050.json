@@ -1,0 +1,88 @@
+{
+  "id": "4050",
+  "title": "Hypoglycemia",
+  "category": "medical",
+  "pages": [87],
+  "sourceVersion": "2026-04-22",
+  "aliases": ["low blood sugar", "diabetic", "BGL", "glucose", "insulin reaction"],
+  "entry": "check-bgl",
+  "nodes": {
+    "check-bgl": {
+      "kind": "step",
+      "items": [
+        { "text": "**Check blood glucose level in ANY patient with signs or symptoms consistent with hypoglycemia**" },
+        { "text": "Examples: *Altered mental status, agitation, focal neurologic deficit, seizure, weakness, diaphoresis, decreased motor tone, pallor*" }
+      ],
+      "next": "bgl-low"
+    },
+    "bgl-low": {
+      "kind": "step",
+      "items": [
+        { "text": "Blood glucose level < 60 mg/dl" },
+        { "text": "If newly born refer to [[p:3020|neonatal resuscitation]] protocol", "population": "pediatric" }
+      ],
+      "next": "oral-glucose"
+    },
+    "oral-glucose": {
+      "kind": "step",
+      "items": [
+        { "text": "If patient can safely tolerate, administer [[m:9240|oral glucose]]" },
+        { "text": "*(intact gag reflex, follows verbal commands)*" }
+      ],
+      "next": "dextrose"
+    },
+    "dextrose": {
+      "kind": "step",
+      "items": [
+        { "text": "If oral glucose contraindicated or symptoms unresolved, administer [[m:9090|dextrose]] IV", "level": "EMT" },
+        { "text": "If unable to establish IV:", "level": "EMT" },
+        { "text": "Administer [[m:9130|glucagon]]", "level": "AEMT", "style": "bullet" },
+        { "text": "Alternative: If severe symptoms (coma), consider [[p:1060|IO]] and administer [[m:9090|dextrose]] IO", "level": "EMT", "style": "bullet" }
+      ],
+      "next": "recheck"
+    },
+    "recheck": {
+      "kind": "step",
+      "items": [
+        { "text": "If still symptomatic, recheck blood glucose level and consider other causes of [[p:4010|altered mental status]]" }
+      ],
+      "next": "dispo"
+    },
+    "dispo": {
+      "kind": "step",
+      "items": [
+        { "text": "Monitor and transport or **Contact Receiving Hospital** for refusal if indicated" }
+      ]
+    }
+  },
+  "sidebars": [
+    {
+      "kind": "teaching",
+      "items": [
+        { "text": "If hypoglycemia still most likely despite normal reading on glucometer, administer glucose **regardless**, while considering other causes of altered mental status" }
+      ]
+    },
+    {
+      "kind": "teaching",
+      "title": "Regarding refusals after a hypoglycemic episode:",
+      "items": [
+        { "text": "See [[p:0032|patient refusal]] protocol" },
+        { "text": "Transport is always indicated for any of the following patients:" },
+        { "text": "With *unexplained* hypoglycemia", "style": "bullet" },
+        { "text": "Taking oral hypoglycemic meds", "style": "bullet" },
+        { "text": "Not taking food by mouth", "style": "bullet" },
+        { "text": "Do not have competent adult to monitor", "style": "bullet" }
+      ]
+    },
+    {
+      "kind": "teaching",
+      "title": "Considerations for Hyperglycemia:",
+      "items": [
+        { "text": "In general, treat the patient, not the glucose value. Treat shock if present.", "style": "bullet" },
+        { "text": "Consider normal saline bolus for patients with hyperglycemia and no evidence of fluid overload.", "style": "bullet" },
+        { "text": "Pediatric patients with concern for DKA should not exceed 10-20 mL/kg of fluids.", "style": "bullet", "population": "pediatric" }
+      ]
+    }
+  ],
+  "reviewed": null
+}

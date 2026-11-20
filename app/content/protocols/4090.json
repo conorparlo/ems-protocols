@@ -1,0 +1,251 @@
+{
+  "id": "4090",
+  "title": "Allergy and Anaphylaxis",
+  "category": "medical",
+  "pages": [
+    92
+  ],
+  "sourceVersion": "2026-04-22",
+  "aliases": [
+    "allergic reaction",
+    "anaphylaxis",
+    "angioedema",
+    "hives",
+    "epipen"
+  ],
+  "entry": "presentation",
+  "nodes": {
+    "presentation": {
+      "kind": "step",
+      "items": [
+        {
+          "text": "Allergic reaction, anaphylaxis, or angioedema"
+        }
+      ],
+      "next": "assess"
+    },
+    "assess": {
+      "kind": "step",
+      "items": [
+        {
+          "text": "Assess ABCs, give oxygen",
+          "style": "bullet"
+        },
+        {
+          "text": "If possible, determine likely trigger",
+          "style": "bullet"
+        },
+        {
+          "text": "Determine PMH, medications, allergies",
+          "style": "bullet"
+        },
+        {
+          "text": "Classify based on symptom severity and systems involved",
+          "style": "bullet"
+        },
+        {
+          "text": "Other specific protocols may apply e.g. [[p:2005|obstructed airway]], [[p:5040|bites & envenomation]]",
+          "style": "bullet"
+        }
+      ],
+      "next": "classify"
+    },
+    "classify": {
+      "kind": "decision",
+      "text": "Classify the reaction",
+      "items": [
+        {
+          "text": "1. **Signs of shock:** Poor perfusion, altered mental status, hypotension"
+        },
+        {
+          "text": "2. **Airway or mucous membrane involvement:** Tongue or uvula swelling, stridor, lip swelling"
+        },
+        {
+          "text": "3. **Anaphylaxis:** Potential allergen AND any two of the following:"
+        },
+        {
+          "text": "**Angioedema:** facial/lip/tongue swelling, throat tightening voice changes",
+          "style": "subbullet"
+        },
+        {
+          "text": "**Breathing:** shortness of breath, wheeze, stridor, cyanosis",
+          "style": "subbullet"
+        },
+        {
+          "text": "**Poor perfusion:** hypotension, altered mental status, syncope, delayed capillary refill",
+          "style": "subbullet"
+        },
+        {
+          "text": "**Skin:** Hives, itching, extremity swelling, erythema",
+          "style": "subbullet"
+        },
+        {
+          "text": "**Gastrointestinal:** vomiting, abdominal pain, diarrhea",
+          "style": "subbullet"
+        }
+      ],
+      "branches": [
+        {
+          "label": "Shock, airway involvement, or anaphylaxis (1–3)",
+          "next": "epi-im"
+        },
+        {
+          "label": "Localized reaction / isolated generalized rash",
+          "next": "local"
+        }
+      ]
+    },
+    "local": {
+      "kind": "step",
+      "items": [
+        {
+          "text": "**Localized Reaction / Isolated Generalized Rash**"
+        },
+        {
+          "text": "If significant discomfort:"
+        },
+        {
+          "text": "Give [[m:9100|diphenhydramine]]",
+          "level": "AEMT",
+          "style": "bullet"
+        },
+        {
+          "text": "Give [[m:9200|methylprednisolone]]",
+          "level": "EMT-I",
+          "style": "bullet"
+        }
+      ],
+      "next": "local-reassess"
+    },
+    "local-reassess": {
+      "kind": "decision",
+      "text": "Reassess: does the patient deteriorate or not improve?",
+      "items": [
+        {
+          "text": "Reassess and if patient deteriorates or does not improve go to [[m:9120|epinephrine]] IM"
+        }
+      ],
+      "branches": [
+        {
+          "label": "Deteriorates / not improving → epinephrine IM",
+          "next": "epi-im"
+        },
+        {
+          "label": "Improving",
+          "next": "monitor"
+        }
+      ]
+    },
+    "epi-im": {
+      "kind": "step",
+      "items": [
+        {
+          "text": "Give [[m:9120|epinephrine]] IM",
+          "style": "bullet"
+        },
+        {
+          "text": "Avoid standing/ambulating patient. Keep supine if possible",
+          "style": "bullet"
+        },
+        {
+          "text": "Give IV NS bolus per [[p:4001|medical shock protocol]]",
+          "level": "EMT",
+          "style": "bullet"
+        }
+      ],
+      "next": "repeat-epi"
+    },
+    "repeat-epi": {
+      "kind": "step",
+      "items": [
+        {
+          "text": "If no response in 5 minutes repeat [[m:9120|epinephrine]] IM",
+          "style": "bullet"
+        },
+        {
+          "text": "Consider [[m:9120|epinephrine IV infusion or push dose]] if peri-arrest",
+          "level": "PARAMEDIC",
+          "style": "bullet"
+        }
+      ],
+      "next": "epi-iv"
+    },
+    "epi-iv": {
+      "kind": "step",
+      "items": [
+        {
+          "text": "If no response in 5 minutes start [[m:9120|epinephrine IV infusion or push dose]]",
+          "level": "PARAMEDIC",
+          "style": "bullet"
+        }
+      ],
+      "next": "adjuncts"
+    },
+    "adjuncts": {
+      "kind": "step",
+      "items": [
+        {
+          "text": "If time and patient stability permit:"
+        },
+        {
+          "text": "Give [[m:9100|diphenhydramine]]",
+          "level": "AEMT",
+          "style": "bullet"
+        },
+        {
+          "text": "Give [[m:9200|methylprednisolone]]",
+          "level": "EMT-I",
+          "style": "bullet"
+        },
+        {
+          "text": "Consider addition of [[m:9020|albuterol]] if wheezing",
+          "level": "EMT",
+          "style": "bullet"
+        }
+      ],
+      "next": "monitor"
+    },
+    "monitor": {
+      "kind": "step",
+      "items": [
+        {
+          "text": "Monitor ABCs, SpO2, cardiac rhythm",
+          "style": "bullet"
+        },
+        {
+          "text": "Reassess for signs of deterioration",
+          "style": "bullet"
+        }
+      ]
+    }
+  },
+  "sidebars": [
+    {
+      "kind": "pediatric",
+      "title": "Pediatric Considerations:",
+      "items": [
+        {
+          "text": "Anaphylaxis in children less than 6 months is rare, consider alternative causes."
+        }
+      ]
+    },
+    {
+      "kind": "teaching",
+      "title": "Document:",
+      "items": [
+        {
+          "text": "History of allergen exposure, prior allergic reaction and severity, medications or treatments administered prior to EMS assessment",
+          "style": "bullet"
+        },
+        {
+          "text": "Specific symptoms and signs presented: itching, wheezing, respiratory distress, nausea, weakness, rash, anxiety, swelling of face, lips, tongue, throat, chest tightness, etc.",
+          "style": "bullet"
+        }
+      ]
+    }
+  ],
+  "conversionNotes": [
+    "The PDF's 'Reassess' box only shows the arrow to epinephrine IM. An 'Improving → monitor' branch was added so the step-through can continue without forcing epinephrine."
+  ],
+  "reviewed": null
+}

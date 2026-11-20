@@ -1,0 +1,146 @@
+{
+  "id": "2010",
+  "title": "Adult Universal Respiratory Distress",
+  "category": "respiratory",
+  "pages": [60],
+  "sourceVersion": "2026-04-22",
+  "aliases": ["shortness of breath", "SOB", "dyspnea", "difficulty breathing", "respiratory distress"],
+  "entry": "start",
+  "nodes": {
+    "start": {
+      "kind": "step",
+      "items": [{ "text": "**Respiratory Distress**" }],
+      "next": "all-patients"
+    },
+    "all-patients": {
+      "kind": "step",
+      "items": [
+        { "text": "**For all patients:**" },
+        { "text": "While assessing ABCs: give supplemental O₂, monitor vital signs, cardiac rhythm, SpO₂ and ETCO₂" }
+      ],
+      "next": "patent-airway"
+    },
+    "patent-airway": {
+      "kind": "decision",
+      "text": "Patent airway?",
+      "branches": [
+        { "label": "Yes", "next": "ventilations" },
+        { "label": "No", "next": "goto-obstructed" }
+      ]
+    },
+    "goto-obstructed": {
+      "kind": "goto",
+      "protocolId": "2005",
+      "text": "[[p:2005|Obstructed Airway]] protocol",
+      "next": "ventilations"
+    },
+    "ventilations": {
+      "kind": "decision",
+      "text": "Are ventilations adequate for physiologic state?",
+      "branches": [
+        { "label": "Yes", "next": "anaphylaxis" },
+        { "label": "No", "next": "assist-ventilations" }
+      ]
+    },
+    "assist-ventilations": {
+      "kind": "step",
+      "items": [{ "text": "Assist ventilations with BVM and airway adjuncts as needed" }],
+      "next": "anaphylaxis"
+    },
+    "anaphylaxis": {
+      "kind": "decision",
+      "text": "Is anaphylaxis likely?",
+      "branches": [
+        { "label": "Yes", "next": "goto-anaphylaxis" },
+        { "label": "No", "next": "asthma-copd" }
+      ]
+    },
+    "goto-anaphylaxis": {
+      "kind": "goto",
+      "protocolId": "4090",
+      "text": "[[p:4090|Allergy/Anaphylaxis]] protocol",
+      "next": "asthma-copd"
+    },
+    "asthma-copd": {
+      "kind": "decision",
+      "text": "Is asthma or COPD likely?",
+      "branches": [
+        { "label": "Yes", "next": "goto-wheezing" },
+        { "label": "No", "next": "chf" },
+        { "label": "? Mixed picture", "next": "mixed-picture" }
+      ]
+    },
+    "goto-wheezing": {
+      "kind": "goto",
+      "protocolId": "2030",
+      "text": "[[p:2030|Adult Wheezing]] protocol",
+      "next": "chf"
+    },
+    "chf": {
+      "kind": "decision",
+      "text": "Is CHF/pulmonary edema likely?",
+      "branches": [
+        { "label": "Yes", "next": "goto-chf" },
+        { "label": "No", "next": "supportive" },
+        { "label": "? Mixed picture", "next": "mixed-picture" }
+      ]
+    },
+    "goto-chf": {
+      "kind": "goto",
+      "protocolId": "2060",
+      "text": "[[p:2060|CHF/Pulmonary Edema]] protocol",
+      "next": "supportive"
+    },
+    "mixed-picture": {
+      "kind": "step",
+      "items": [
+        { "text": "**Mixed picture may exist**" },
+        { "text": "Goal is maximization of oxygenation and ventilation in all cases", "style": "bullet" },
+        { "text": "[[p:1040|CPAP]] may be particularly useful in mixed picture with hypoxia and/or hypoventilation", "style": "bullet" },
+        { "text": "Avoid albuterol in suspected pulmonary edema", "style": "bullet" }
+      ],
+      "next": "supportive"
+    },
+    "supportive": {
+      "kind": "step",
+      "items": [
+        { "text": "Transport", "style": "bullet" },
+        { "text": "Provide supportive care", "style": "bullet" },
+        { "text": "Maximize oxygenation and ventilation", "style": "bullet" },
+        { "text": "**Contact Receiving Hospital** if needed for consult", "style": "bullet" },
+        { "text": "Consider 12 lead ECG", "level": "EMT-I", "style": "bullet" }
+      ]
+    }
+  },
+  "sidebars": [
+    {
+      "kind": "teaching",
+      "title": "Consider pulmonary and non-pulmonary causes of respiratory distress:",
+      "items": [
+        { "text": "Pulmonary embolism", "style": "bullet" },
+        { "text": "Pneumonia", "style": "bullet" },
+        { "text": "Heart attack", "style": "bullet" },
+        { "text": "Pneumothorax", "style": "bullet" },
+        { "text": "Sepsis", "style": "bullet" },
+        { "text": "Metabolic acidosis (e.g.: DKA)", "style": "bullet" },
+        { "text": "Anxiety", "style": "bullet" },
+        { "text": "Cardiac tamponade", "style": "bullet" },
+        { "text": "Cardiac dysrhythmia", "style": "bullet" }
+      ]
+    },
+    {
+      "kind": "teaching",
+      "title": "Mixed picture may exist",
+      "items": [
+        { "text": "Goal is maximization of oxygenation and ventilation in all cases", "style": "bullet" },
+        { "text": "[[p:1040|CPAP]] may be particularly useful in mixed picture with hypoxia and/or hypoventilation", "style": "bullet" },
+        { "text": "Avoid albuterol in suspected pulmonary edema", "style": "bullet" }
+      ]
+    }
+  ],
+  "conversionNotes": [
+    "The '?' arrows from the asthma/COPD and CHF decisions to the 'Mixed picture may exist' teaching box are modeled as a '? Mixed picture' branch that then continues to supportive care.",
+    "In the PDF, the referenced-protocol boxes (Obstructed Airway, Anaphylaxis, Wheezing, CHF) have arrows back into the main flow. These are modeled as goto nodes with a 'continue' path."
+  ],
+  "reviewed": null
+}

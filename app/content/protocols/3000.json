@@ -1,0 +1,187 @@
+{
+  "id": "3000",
+  "title": "Medical Pulseless Arrest",
+  "category": "cardiac",
+  "pages": [67],
+  "sourceVersion": "2026-04-22",
+  "aliases": ["cardiac arrest", "code", "CPR", "VF", "VT", "asystole", "PEA", "pulseless"],
+  "entry": "pulseless-arrest",
+  "nodes": {
+    "pulseless-arrest": {
+      "kind": "step",
+      "items": [{ "text": "**Pulseless Arrest**" }],
+      "next": "bls"
+    },
+    "bls": {
+      "kind": "step",
+      "items": [
+        { "text": "**BLS Sequence**" },
+        { "text": "Start CPR + apply AED", "style": "bullet" },
+        { "text": "Check rhythm & shock if indicated. Repeat every 2 min", "style": "bullet" },
+        { "text": "Start IV/IO", "level": "EMT", "style": "bullet" }
+      ],
+      "next": "als"
+    },
+    "als": {
+      "kind": "step",
+      "items": [
+        { "text": "**ALS Sequence**" },
+        { "text": "Start CPR", "level": "EMT-I", "style": "bullet" },
+        { "text": "Attach manual defibrillator ASAP", "level": "EMT-I", "style": "bullet" },
+        { "text": "Give O₂", "level": "EMT-I", "style": "bullet" }
+      ],
+      "next": "shockable-1"
+    },
+    "shockable-1": {
+      "kind": "decision",
+      "text": "Shockable rhythm?",
+      "branches": [
+        { "label": "Yes — Pulseless VT/VF", "next": "vtvf" },
+        { "label": "No — Asystole/PEA (box B)", "next": "asystole-pea" }
+      ]
+    },
+    "vtvf": {
+      "kind": "step",
+      "items": [
+        { "text": "**Pulseless VT/VF**" },
+        { "text": "**Shock then CPR x 2 min**" },
+        { "text": "Start IV/IO", "level": "EMT" }
+      ],
+      "next": "shockable-2"
+    },
+    "shockable-2": {
+      "kind": "decision",
+      "text": "Shockable rhythm?",
+      "branches": [
+        { "label": "Yes (box A)", "next": "shock-epi" },
+        { "label": "No", "next": "not-shockable" }
+      ]
+    },
+    "shock-epi": {
+      "kind": "step",
+      "items": [
+        { "text": "**Box A**" },
+        { "text": "**Shock then CPR x 2 min**" },
+        { "text": "[[m:9120|Epinephrine]]", "level": "EMT-I" }
+      ],
+      "next": "shockable-3"
+    },
+    "shockable-3": {
+      "kind": "decision",
+      "text": "Shockable rhythm?",
+      "branches": [
+        { "label": "Yes", "next": "shock-antiarrhythmic" },
+        { "label": "No", "next": "not-shockable" }
+      ]
+    },
+    "shock-antiarrhythmic": {
+      "kind": "step",
+      "items": [
+        { "text": "**Shock then CPR x 2 min**" },
+        { "text": "[[m:9120|Epinephrine]]", "level": "EMT-I", "style": "bullet" },
+        { "text": "[[m:9030|Amiodarone or Lidocaine]]", "level": "EMT-I", "style": "bullet" },
+        { "text": "Treat reversible causes (“Hs & Ts”)", "level": "EMT-I", "style": "bullet" },
+        { "text": "If refractory VT/ VF, change pad vector or perform dual sequential defibrillation per agency policy", "level": "EMT-I", "style": "bullet" }
+      ],
+      "next": "shockable-2"
+    },
+    "not-shockable": {
+      "kind": "decision",
+      "text": "Rhythm not shockable: what is it?",
+      "items": [
+        { "text": "If asystole, go to **box B**", "style": "bullet" },
+        { "text": "If organized rhythm, check pulse. If no pulse, go to **box B**", "style": "bullet" },
+        { "text": "If ROSC, begin [[p:3030|post-cardiac arrest care]]", "style": "bullet" },
+        { "text": "For termination criteria, refer to the [[p:0051|termination of resuscitation]] protocol", "style": "bullet" }
+      ],
+      "branches": [
+        { "label": "Asystole, or organized rhythm without pulse → box B", "next": "asystole-pea" },
+        { "label": "ROSC", "next": "goto-rosc" },
+        { "label": "Termination criteria", "next": "goto-tor" }
+      ]
+    },
+    "goto-rosc": {
+      "kind": "goto",
+      "protocolId": "3030",
+      "text": "[[p:3030|Post-Resuscitation Care with ROSC]]"
+    },
+    "goto-tor": {
+      "kind": "goto",
+      "protocolId": "0051",
+      "text": "[[p:0051|Termination of Resuscitation]]"
+    },
+    "asystole-pea": {
+      "kind": "step",
+      "items": [
+        { "text": "**Box B: Asystole/PEA**" },
+        { "text": "**CPR x 2 min**" },
+        { "text": "Start IV/IO", "level": "EMT", "style": "bullet" },
+        { "text": "Consider Hs and Ts", "level": "EMT-I", "style": "bullet" },
+        { "text": "[[m:9120|Epinephrine]]", "level": "EMT-I", "style": "bullet" }
+      ],
+      "next": "shockable-b"
+    },
+    "shockable-b": {
+      "kind": "decision",
+      "text": "Shockable rhythm?",
+      "branches": [
+        { "label": "Yes → go to box A", "next": "shock-epi" },
+        { "label": "No", "next": "not-shockable" }
+      ]
+    }
+  },
+  "sidebars": [
+    {
+      "kind": "info",
+      "title": "Suspected hyperkalemic arrest (renal failure/dialysis patient):",
+      "items": [
+        { "text": "Give IV/IO [[m:9080|calcium]], IV/IO [[m:9280|sodium bicarb]], and [[m:9020|albuterol]].", "level": "PARAMEDIC", "style": "bullet" },
+        { "text": "Flush line between meds or administer in a separate line.", "level": "PARAMEDIC", "style": "bullet" },
+        { "text": "**If rhythm Torsades de Pointes:**", "level": "PARAMEDIC" },
+        { "text": "Give [[m:9190|magnesium]]", "level": "PARAMEDIC", "style": "bullet" }
+      ]
+    },
+    {
+      "kind": "teaching",
+      "title": "Mechanical CPR Devices:",
+      "items": [
+        { "text": "Consider administering a [[m:9070|benzodiazepine]] if patient appears agitated even with absent vital signs.", "style": "bullet" },
+        { "text": "Devices generally need to only be stopped for ECG analysis; keep the device operating and check for asynchronous pulse.", "style": "bullet" },
+        { "text": "Monitor for device migration, which may result in decreased compression quality and end tidal CO₂ measurements.", "style": "bullet" }
+      ]
+    },
+    {
+      "kind": "teaching",
+      "title": "Considerations:",
+      "items": [
+        { "text": "For PEA, pharmacology or fluid therapy depending on underlying cause", "style": "bullet" },
+        { "text": "Consideration for reversible causes is critical to treatment (Hs and Ts)", "style": "bullet" },
+        { "text": "Hyper/hypokalemia", "style": "subbullet" },
+        { "text": "Hypovolemia", "style": "subbullet" },
+        { "text": "Hydrogen ion/acidosis", "style": "subbullet" },
+        { "text": "Hypothermia", "style": "subbullet" },
+        { "text": "Hypoxia", "style": "subbullet" },
+        { "text": "Tamponade", "style": "subbullet" },
+        { "text": "Tension pneumothorax", "style": "subbullet" },
+        { "text": "Tox (OD)", "style": "subbullet" },
+        { "text": "Thrombosis (MI)", "style": "subbullet" },
+        { "text": "Thrombosis (PE)", "style": "subbullet" },
+        { "text": "Symptomatic severe bradycardia is usually related to one of the following:", "style": "bullet" },
+        { "text": "Ischemia (MI)", "style": "subbullet" },
+        { "text": "Drugs (beta blocker, calcium channel blocker)", "style": "subbullet" },
+        { "text": "Electrolytes (hyperkalemia)", "style": "subbullet" },
+        { "text": "For [[p:5010|hypothermic]] patients:", "style": "bullet" },
+        { "text": "Handle very gently", "style": "subbullet" },
+        { "text": "Single defibrillation attempt only", "style": "subbullet" },
+        { "text": "Start IV with warm IV fluid", "style": "subbullet" },
+        { "text": "Insulate patient", "style": "subbullet" },
+        { "text": "Single dose [[m:9120|epinephrine]] IV/IO", "style": "subbullet" }
+      ]
+    }
+  ],
+  "conversionNotes": [
+    "The PDF shows the BLS sequence (with its own 2-minute loop) and the ALS sequence side by side. Here they are sequential steps: BLS → ALS.",
+    "The text box between the 'No' arrows is modeled as a decision with branches for box B, ROSC, and termination."
+  ],
+  "reviewed": null
+}

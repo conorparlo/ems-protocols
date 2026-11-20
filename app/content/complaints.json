@@ -1,0 +1,724 @@
+[
+ {
+  "id": "cardiac-arrest",
+  "label": "Cardiac arrest",
+  "group": "Medical",
+  "keywords": [
+   "code",
+   "CPR",
+   "pulseless",
+   "VF",
+   "asystole",
+   "PEA",
+   "ROSC"
+  ],
+  "adult": [
+   "3000",
+   "3010",
+   "3030",
+   "0051",
+   "0050"
+  ],
+  "pediatric": [
+   "3000",
+   "3010",
+   "3020",
+   "3030"
+  ]
+ },
+ {
+  "id": "chest-pain",
+  "label": "Chest pain",
+  "group": "Medical",
+  "keywords": [
+   "ACS",
+   "MI",
+   "STEMI",
+   "angina"
+  ],
+  "adult": [
+   "3060",
+   "3070"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "sob",
+  "label": "Shortness of breath",
+  "group": "Medical",
+  "keywords": [
+   "SOB",
+   "dyspnea",
+   "respiratory distress",
+   "wheezing",
+   "asthma",
+   "COPD",
+   "CHF",
+   "CPAP"
+  ],
+  "adult": [
+   "2010",
+   "2030",
+   "2060",
+   "2005",
+   "1040"
+  ],
+  "pediatric": [
+   "2020",
+   "2040",
+   "2050",
+   "2005"
+  ]
+ },
+ {
+  "id": "ams",
+  "label": "Altered mental status",
+  "group": "Medical",
+  "keywords": [
+   "AMS",
+   "confused",
+   "unresponsive",
+   "LOC"
+  ],
+  "adult": [
+   "4010"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "syncope",
+  "label": "Syncope / fainting",
+  "group": "Medical",
+  "keywords": [
+   "passed out",
+   "fainted",
+   "near syncope"
+  ],
+  "adult": [
+   "4020"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "stroke",
+  "label": "Stroke / neuro deficit",
+  "group": "Medical",
+  "keywords": [
+   "CVA",
+   "TIA",
+   "weakness",
+   "facial droop",
+   "slurred speech",
+   "LVO"
+  ],
+  "adult": [
+   "4030",
+   "4031"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "seizure",
+  "label": "Seizure",
+  "group": "Medical",
+  "keywords": [
+   "convulsion",
+   "status epilepticus",
+   "postictal"
+  ],
+  "adult": [
+   "4040"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "diabetic",
+  "label": "Diabetic / blood sugar",
+  "group": "Medical",
+  "keywords": [
+   "hypoglycemia",
+   "hyperglycemia",
+   "BGL",
+   "DKA",
+   "insulin"
+  ],
+  "adult": [
+   "4050"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "allergic",
+  "label": "Allergic reaction",
+  "group": "Medical",
+  "keywords": [
+   "anaphylaxis",
+   "hives",
+   "angioedema",
+   "epipen"
+  ],
+  "adult": [
+   "4090"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "overdose",
+  "label": "Overdose / poisoning / intoxication",
+  "group": "Medical",
+  "keywords": [
+   "OD",
+   "opioid",
+   "naloxone",
+   "narcan",
+   "alcohol",
+   "ETOH",
+   "withdrawal",
+   "tox"
+  ],
+  "adult": [
+   "4080",
+   "4070",
+   "4075",
+   "1190"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "abd-pain",
+  "label": "Abdominal pain / vomiting",
+  "group": "Medical",
+  "keywords": [
+   "nausea",
+   "vomiting",
+   "N/V",
+   "abd pain"
+  ],
+  "adult": [
+   "4100"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "sepsis",
+  "label": "Sepsis / fever / infection",
+  "group": "Medical",
+  "keywords": [
+   "infection",
+   "septic"
+  ],
+  "adult": [
+   "4140",
+   "4001"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "shock",
+  "label": "Shock / hypotension / crashing",
+  "group": "Medical",
+  "keywords": [
+   "hypotension",
+   "hypoperfusion",
+   "peri-arrest",
+   "blood"
+  ],
+  "adult": [
+   "4000",
+   "4001",
+   "4005"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "dysrhythmia",
+  "label": "Palpitations / fast or slow HR",
+  "group": "Medical",
+  "keywords": [
+   "tachycardia",
+   "bradycardia",
+   "SVT",
+   "afib",
+   "arrhythmia",
+   "pacing",
+   "cardioversion"
+  ],
+  "adult": [
+   "3040",
+   "3050"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "hypertension",
+  "label": "Hypertension",
+  "group": "Medical",
+  "keywords": [
+   "high blood pressure",
+   "HTN"
+  ],
+  "adult": [
+   "3080"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "bleeding-nose",
+  "label": "Nosebleed",
+  "group": "Medical",
+  "keywords": [
+   "epistaxis"
+  ],
+  "adult": [
+   "4130"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "co",
+  "label": "Carbon monoxide exposure",
+  "group": "Medical",
+  "keywords": [
+   "CO",
+   "smoke inhalation"
+  ],
+  "adult": [
+   "4110"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "special-devices",
+  "label": "Special devices (VAD / trach)",
+  "group": "Medical",
+  "keywords": [
+   "LVAD",
+   "VAD",
+   "tracheostomy",
+   "trach"
+  ],
+  "adult": [
+   "3090",
+   "2070"
+  ],
+  "pediatric": [
+   "2070",
+   "0100"
+  ]
+ },
+ {
+  "id": "other-medical",
+  "label": "Adrenal insufficiency / hyperkalemia",
+  "group": "Medical",
+  "keywords": [
+   "adrenal crisis",
+   "steroid",
+   "dialysis",
+   "potassium"
+  ],
+  "adult": [
+   "4120",
+   "4150"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "peds-brue",
+  "label": "Infant: BRUE / ALTE",
+  "group": "Medical",
+  "keywords": [
+   "BRUE",
+   "ALTE",
+   "apnea",
+   "infant"
+  ],
+  "adult": [
+   "4060"
+  ],
+  "pediatric": [
+   "4060"
+  ]
+ },
+ {
+  "id": "trauma-general",
+  "label": "General trauma / activation",
+  "group": "Trauma",
+  "keywords": [
+   "MVC",
+   "fall",
+   "GSW",
+   "trauma alert",
+   "mechanism"
+  ],
+  "adult": [
+   "8000",
+   "8005",
+   "8020",
+   "1130"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "traumatic-arrest",
+  "label": "Traumatic arrest",
+  "group": "Trauma",
+  "keywords": [
+   "trauma code"
+  ],
+  "adult": [
+   "8010"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "head",
+  "label": "Head injury",
+  "group": "Trauma",
+  "keywords": [
+   "TBI",
+   "concussion",
+   "head trauma"
+  ],
+  "adult": [
+   "8030"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "face-neck",
+  "label": "Face / neck injury",
+  "group": "Trauma",
+  "keywords": [
+   "eye",
+   "dental",
+   "neck"
+  ],
+  "adult": [
+   "8040"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "spine",
+  "label": "Spinal injury",
+  "group": "Trauma",
+  "keywords": [
+   "c-spine",
+   "SMR",
+   "backboard",
+   "helmet"
+  ],
+  "adult": [
+   "8050",
+   "8055"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "chest-trauma",
+  "label": "Chest trauma",
+  "group": "Trauma",
+  "keywords": [
+   "pneumothorax",
+   "needle decompression",
+   "flail"
+  ],
+  "adult": [
+   "8060",
+   "1120"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "abd-pelvis",
+  "label": "Abdominal / pelvic trauma",
+  "group": "Trauma",
+  "keywords": [
+   "pelvic binder",
+   "pelvis"
+  ],
+  "adult": [
+   "8070",
+   "1140"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "extremity",
+  "label": "Extremity injury / hemorrhage",
+  "group": "Trauma",
+  "keywords": [
+   "fracture",
+   "tourniquet",
+   "bleeding",
+   "amputation"
+  ],
+  "adult": [
+   "8080",
+   "1130"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "burns",
+  "label": "Burns",
+  "group": "Trauma",
+  "keywords": [
+   "burn",
+   "thermal",
+   "electrical"
+  ],
+  "adult": [
+   "8090"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "crush",
+  "label": "Crush injury / suspension",
+  "group": "Trauma",
+  "keywords": [
+   "entrapment",
+   "suspension trauma",
+   "harness"
+  ],
+  "adult": [
+   "8025"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "pregnant-trauma",
+  "label": "Trauma in pregnancy",
+  "group": "Trauma",
+  "keywords": [
+   "pregnant trauma"
+  ],
+  "adult": [
+   "8110"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "assault",
+  "label": "Sexual assault / abuse / neglect",
+  "group": "Trauma",
+  "keywords": [
+   "abuse",
+   "neglect",
+   "domestic violence",
+   "trafficking"
+  ],
+  "adult": [
+   "8100",
+   "0090",
+   "0095"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "heat",
+  "label": "Heat illness",
+  "group": "Environmental",
+  "keywords": [
+   "hyperthermia",
+   "heat stroke",
+   "heat exhaustion"
+  ],
+  "adult": [
+   "5020"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "cold",
+  "label": "Cold / hypothermia",
+  "group": "Environmental",
+  "keywords": [
+   "hypothermia",
+   "frostbite"
+  ],
+  "adult": [
+   "5010"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "drowning",
+  "label": "Drowning",
+  "group": "Environmental",
+  "keywords": [
+   "submersion"
+  ],
+  "adult": [
+   "5000"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "altitude",
+  "label": "Altitude illness",
+  "group": "Environmental",
+  "keywords": [
+   "AMS",
+   "HAPE",
+   "HACE",
+   "mountain sickness"
+  ],
+  "adult": [
+   "5030"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "bites",
+  "label": "Bites / stings / snakebite",
+  "group": "Environmental",
+  "keywords": [
+   "snake",
+   "spider",
+   "bee",
+   "envenomation"
+  ],
+  "adult": [
+   "5040",
+   "5050"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "behavioral",
+  "label": "Behavioral / psychiatric",
+  "group": "Behavioral & OB",
+  "keywords": [
+   "psych",
+   "suicidal",
+   "SI",
+   "M1 hold",
+   "mental health"
+  ],
+  "adult": [
+   "6000",
+   "1150",
+   "6020"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "agitated",
+  "label": "Agitated / combative",
+  "group": "Behavioral & OB",
+  "keywords": [
+   "excited delirium",
+   "sedation",
+   "restraint",
+   "IMC-RASS"
+  ],
+  "adult": [
+   "6010",
+   "6015",
+   "1090",
+   "1170"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "childbirth",
+  "label": "Childbirth / OB",
+  "group": "Behavioral & OB",
+  "keywords": [
+   "labor",
+   "delivery",
+   "pregnancy",
+   "newborn",
+   "OB"
+  ],
+  "adult": [
+   "7000",
+   "7010",
+   "3020"
+  ],
+  "pediatric": [
+   "3020"
+  ]
+ },
+ {
+  "id": "pain",
+  "label": "Pain management",
+  "group": "Operations",
+  "keywords": [
+   "analgesia",
+   "fentanyl",
+   "ketamine"
+  ],
+  "adult": [
+   "1175"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "refusal",
+  "label": "Refusal / no transport",
+  "group": "Operations",
+  "keywords": [
+   "AMA",
+   "refusal",
+   "patient or no patient"
+  ],
+  "adult": [
+   "0031",
+   "0032",
+   "0030"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "death",
+  "label": "Death / DNR / termination",
+  "group": "Operations",
+  "keywords": [
+   "DNR",
+   "MOST",
+   "pronouncement",
+   "obvious death"
+  ],
+  "adult": [
+   "0050",
+   "0051",
+   "0060"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "destination",
+  "label": "Destination / divert / IFT",
+  "group": "Operations",
+  "keywords": [
+   "divert",
+   "freestanding ED",
+   "interfacility"
+  ],
+  "adult": [
+   "0110",
+   "0115",
+   "0120"
+  ],
+  "pediatric": []
+ },
+ {
+  "id": "scope",
+  "label": "Scope of practice quick reference",
+  "group": "Operations",
+  "keywords": [
+   "allowed",
+   "waiver",
+   "scope"
+  ],
+  "adult": [
+   "0990",
+   "0130",
+   "0015"
+  ],
+  "pediatric": []
+ }
+]

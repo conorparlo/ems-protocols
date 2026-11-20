@@ -1,0 +1,14 @@
+# Source PDF and regenerable extraction output (large; copyrighted source)
+*.pdf
+content/source/
+tools/.venv/
+__pycache__/
+node_modules/
+.expo/
+dist/
+*.log
+.DS_Store
+
+# Expo-generated native projects (regenerate with `npx expo prebuild`)
+app/ios/
+app/android/

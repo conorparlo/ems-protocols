@@ -1,0 +1,179 @@
+{
+  "id": "4010",
+  "title": "Universal Altered Mental Status",
+  "category": "medical",
+  "pages": [
+    82
+  ],
+  "sourceVersion": "2026-04-22",
+  "aliases": [
+    "AMS",
+    "altered",
+    "confusion",
+    "unresponsive",
+    "decreased LOC",
+    "lethargic"
+  ],
+  "entry": "ams",
+  "nodes": {
+    "ams": {
+      "kind": "step",
+      "items": [
+        {
+          "text": "**Altered Mental Status (AMS)**"
+        }
+      ],
+      "next": "abcs"
+    },
+    "abcs": {
+      "kind": "step",
+      "items": [
+        {
+          "text": "**Assess ABCs**"
+        },
+        {
+          "text": "Go to [[p:3000|pulseless arrest]], [[p:2010|adult respiratory distress]], [[p:2020|pediatric respiratory distress]] or [[p:2005|obstructed airway]] protocols as appropriate"
+        }
+      ],
+      "next": "persistent"
+    },
+    "persistent": {
+      "kind": "decision",
+      "text": "Persistent AMS?",
+      "branches": [
+        {
+          "label": "Yes",
+          "next": "bgl"
+        },
+        {
+          "label": "No",
+          "next": "transient"
+        }
+      ]
+    },
+    "transient": {
+      "kind": "step",
+      "items": [
+        {
+          "text": "Determine characteristics of event",
+          "style": "bullet"
+        },
+        {
+          "text": "Consider [[p:4040|Seizure]], [[p:4020|Syncope]], [[p:4140|Sepsis]], and [[p:4030|Stroke/TIA]]",
+          "style": "bullet"
+        },
+        {
+          "text": "Monitor and transport with supportive care",
+          "style": "bullet"
+        }
+      ],
+      "next": "transport"
+    },
+    "bgl": {
+      "kind": "step",
+      "items": [
+        {
+          "text": "If BGL < 60 mg/dL or clinical condition suggests hypoglycemia, refer to [[p:4050|hypoglycemia]] protocol"
+        }
+      ],
+      "next": "naloxone"
+    },
+    "naloxone": {
+      "kind": "step",
+      "items": [
+        {
+          "text": "Consider trial of [[m:9210|naloxone]]. If improved, refer to [[p:4070|drug/alcohol intoxication]] protocol"
+        }
+      ],
+      "next": "seizure"
+    },
+    "seizure": {
+      "kind": "step",
+      "items": [
+        {
+          "text": "If seizure activity present, refer to [[p:4040|seizure]] protocol"
+        }
+      ],
+      "next": "stroke"
+    },
+    "stroke": {
+      "kind": "step",
+      "items": [
+        {
+          "text": "If any focal neuro deficit or positive Cincinnati Prehospital Stroke Score, refer to [[p:4030|stroke]] protocol"
+        }
+      ],
+      "next": "alcohol"
+    },
+    "alcohol": {
+      "kind": "step",
+      "items": [
+        {
+          "text": "If suspected alcohol intoxication, refer to [[p:4070|drug/alcohol intoxication]] protocol"
+        }
+      ],
+      "next": "other-causes"
+    },
+    "other-causes": {
+      "kind": "step",
+      "items": [
+        {
+          "text": "Consider other causes of AMS:"
+        },
+        {
+          "text": "[[p:8030|Head trauma]]",
+          "style": "bullet"
+        },
+        {
+          "text": "[[p:4080|Overdose]]",
+          "style": "bullet"
+        },
+        {
+          "text": "Hypoxia",
+          "style": "bullet"
+        },
+        {
+          "text": "Hypercapnea",
+          "style": "bullet"
+        },
+        {
+          "text": "[[p:5020|Heat]]/[[p:5010|cold]] emergency",
+          "style": "bullet"
+        },
+        {
+          "text": "[[p:4140|Sepsis]]",
+          "style": "bullet"
+        },
+        {
+          "text": "Metabolic",
+          "style": "bullet"
+        }
+      ],
+      "next": "transport"
+    },
+    "transport": {
+      "kind": "step",
+      "items": [
+        {
+          "text": "During transport:"
+        },
+        {
+          "text": "Give supplemental oxygen if indicated, monitor vital signs, airway, breathing",
+          "style": "bullet"
+        },
+        {
+          "text": "Give fluid bolus if volume depletion or sepsis suspected",
+          "style": "bullet"
+        },
+        {
+          "text": "Cardiac rhythm /12 lead ECG for unexplained altered mental status",
+          "level": "EMT-I",
+          "style": "bullet"
+        }
+      ]
+    }
+  },
+  "sidebars": [],
+  "conversionNotes": [],
+  "reviewed": null
+}
